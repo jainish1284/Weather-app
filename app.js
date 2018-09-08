@@ -1,24 +1,32 @@
+// const request = require('request');
+// const yargs = require('yargs');
+// const geocode = require('./Geocode/geocode');
+
+// const argv = yargs
+//         .options({
+//             a: {
+//                 demand: true,
+//                 alias: 'address',
+//                 describe: 'This is Address',
+//                 string: true
+//             }
+//         })
+//         .argv;
+
+// geocode.exportGeo(argv.a, (errorMessage, results) => {
+//     if(errorMessage) {
+//         console.log(errorMessage);
+//     }
+//     else {
+//         console.log(JSON.stringify(results, undefined, 2));
+//     }
+// });
+
 const request = require('request');
-const yargs = require('yargs');
-
-const argv = yargs
-        .options({
-            a: {
-                demand: true,
-                alias: 'address',
-                describe: 'This is Address',
-                string: true
-            }
-        })
-        .argv;
-
-var address = encodeURIComponent(argv.a);
 
 request({
-    url: `https://maps.googleapis.com/maps/api/geocode/json?address=${address}`,
-    json: true
-},(error,response,body)=>{
-    console.log(`Address: ${body.results[0].formatted_address}`);
-    console.log(`Latitude : ${body.results[0].geometry.location.lat}`);
-    console.log(`Longitude : ${body.results[0].geometry.location.lng}`);
+        url: 'https://api.darksky.net/forecast/1da530fcfab55ecb4447a943c3277265/37.8267,-122.4233',
+        json: true
+    },(error, request, body) => {
+        var data = body.currently;
 });
